@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -21,4 +22,17 @@ public class BookingService {
     public void createBookings(List<Bookings> carts) {
         bookingRepository.saveAll(carts);
     };
+
+    public void deleteBooking(Long id) {
+        bookingRepository.deleteById(id);
+    };
+
+    public Optional<Bookings> updateBooking(Long id, Bookings updatedBooking) {
+        return bookingRepository.findById(id).map(existingBooking -> {
+            existingBooking.setName(updatedBooking.getName());
+            existingBooking.setMessage(updatedBooking.getMessage());
+            existingBooking.setTotal(updatedBooking.getTotal());
+            return bookingRepository.save(existingBooking);
+        });
+    }
 }
