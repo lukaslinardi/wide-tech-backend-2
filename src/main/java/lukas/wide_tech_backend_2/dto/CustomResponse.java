@@ -1,9 +1,11 @@
 package lukas.wide_tech_backend_2.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatusCode;
 
 import java.util.Map;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomResponse {
 
     private HttpStatusCode status;
