@@ -18,7 +18,7 @@ public class BookingService {
     private BookingRepository bookingRepository;
 
     public Page<Bookings> getBookings(int offset, int limit) {
-        return bookingRepository.findAll(PageRequest.of(offset, limit));
+        return bookingRepository.findAll(PageRequest.of(offset - 1, limit));
     }
 
     ;
