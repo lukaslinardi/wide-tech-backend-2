@@ -57,8 +57,7 @@ public class BookingController {
         Map<String, String> message = new HashMap<>();
 
         try {
-            message.put("en", "Success");
-            message.put("id", "Sukses");
+            message.put("status", "Success");
             bookingService.createBookings(newBookings);
             customResponse.CustomResponse(HttpStatus.OK, message, null);
             return ResponseEntity.ok(customResponse);
@@ -70,7 +69,7 @@ public class BookingController {
             return ResponseEntity.status(ex.getStatusCode()).body(customResponse);
         } catch (Exception err) {
             log.error("error from booking controller" + err);
-            message.put("en", "Failed to create data");
+            message.put("status", "Failed to create data");
             customResponse.CustomResponse(HttpStatus.INTERNAL_SERVER_ERROR, message, null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(customResponse);
         }
